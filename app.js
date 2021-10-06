@@ -32,8 +32,8 @@ const client = new MongoClient(url);
 async function getData() {
     let result = await client.connect();
     db = result.db(databaseName);
-    collection = db.collection('posts')
-    console.log(`****DB connected **** ${db}`);
+    collection = db.collection('stores')
+    console.log(`****DB connected **** ${databaseName}`);
     let data = await collection.find({}).toArray();
     console.log(data)
 }
@@ -51,10 +51,13 @@ app.use(bodyParser.json());
 
 const postRoutes = require('./routes/posts');
 
+const storeRoutes = require('./routes/stores');
 
 //Middlewares
 
 app.use('/posts', postRoutes);
+
+app.use('/stores', storeRoutes);
 
 //ROUTES
 
