@@ -1,0 +1,12 @@
+[{
+  "_id": {
+    "$oid": "615dd24bfc92dc5c8e3dd602"
+  },
+  "name": "Super Store",
+  "totalNumberOfProducts": "1000",
+  "memberSince": "1996",
+  "imageUrl": "store.png",
+  "location": "DHA Islamabad",
+  "city": "Lahore",
+  "__v": 0
+}]
