@@ -35,10 +35,10 @@ router.post('/', async (req, res) => {
 });
 
 //SPECIFIC Auth
-router.get('/:authId', async (req, res) => {
+router.post('/get_auth', async (req, res) => {
     //console.log(req.params.authId);
     try {
-        const auth = await Auth.findById(req.params.authId);
+        const auth = await Auth.findById(req.body._id);
         res.json(auth);
     } catch (err) {
         res.json({ message: err });
@@ -47,9 +47,9 @@ router.get('/:authId', async (req, res) => {
 
 //DELETE A SPECIFIC Auth
 
-router.delete('/:authId', async (req, res) => {
+router.delete('/get_auth', async (req, res) => {
     try {
-        const removedAuth = await Auth.deleteOne({ _id: req.params.authId });
+        const removedAuth = await Auth.deleteOne({ _id: req.body._id });
         res.json(removedAuth);
     } catch (err) {
         res.json({ message: err });
@@ -57,9 +57,9 @@ router.delete('/:authId', async (req, res) => {
 });
 
 //UPDATE A SPECIFIC Auth
-router.patch('/:authId', async (req, res) => {
+router.patch('/get_auth', async (req, res) => {
     try {
-        const updatedAuth = await Auth.updateOne({ _id: req.params.authId }, { $set: { username: req.body.username } });
+        const updatedAuth = await Auth.updateOne({ _id: req.body._id }, { $set: { username: req.body.username } });
         res.json(updatedAuth);
     }
     catch (err) {

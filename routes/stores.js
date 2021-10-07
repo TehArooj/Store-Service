@@ -39,23 +39,26 @@ router.post('/', async (req, res) => {
 
 });
 
+
 //SPECIFIC Store
-router.get('/:storeId', async (req, res) => {
-    //console.log(req.params.storeId);
+
+router.post('/get_store', async (req, res) => {
     try {
-        const store = await Store.findById(req.params.storeId);
+        const store = await Store.findById(req.body._id);
+        //console.log(req.body);
         res.json(store);
     } catch (err) {
         res.json({ message: err });
     }
 });
 
+
 //DELETE A SPECIFIC Store
 
-router.delete('/:storeId', async (req, res) => {
+router.delete('/get_store', async (req, res) => {
     try {
         //const removedStore = await Store.remove({ _id: req.params.storeId });
-        const removedStore = await Store.deleteOne({ _id: req.params.storeId });
+        const removedStore = await Store.deleteOne({ _id: req.body._id });
         count= await Store.count();
         console.log(`Store count : ${count}`);
         res.json(removedStore);
@@ -67,9 +70,9 @@ router.delete('/:storeId', async (req, res) => {
 
 
 //UPDATE A SPECIFIC Store
-router.patch('/:storeId', async (req, res) => {
+router.patch('/get_store', async (req, res) => {
     try {
-        const updatedStore = await Store.updateOne({ _id: req.params.storeId }, { $set: { memberSince: req.body.memberSince } });
+        const updatedStore = await Store.updateOne({ _id: req.body._id }, { $set: { memberSince: req.body.memberSince } });
         res.json(updatedStore);
     }
     catch (err) {

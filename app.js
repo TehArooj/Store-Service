@@ -49,7 +49,7 @@ app.use(bodyParser.json());
 
 //Import Routes
 
-const postRoutes = require('./routes/posts');
+//const postRoutes = require('./routes/posts');
 
 const storeRoutes = require('./routes/stores');
 
@@ -58,7 +58,7 @@ const authRoutes = require('./routes/auths');
 
 //Middlewares
 
-app.use('/posts', postRoutes);
+//app.use('/posts', postRoutes);
 
 app.use('/stores', storeRoutes);
 
