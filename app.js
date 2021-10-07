@@ -29,7 +29,7 @@ const url = 'mongodb://localhost:27017';
 const databaseName = 'test'
 const client = new MongoClient(url);
 
-async function getData() {
+/*async function getData() {
     let result = await client.connect();
     db = result.db(databaseName);
     collection = db.collection('stores')
@@ -38,7 +38,7 @@ async function getData() {
     console.log(data)
 }
 
-getData();
+getData();*/
 
 
 const app = express();
@@ -53,11 +53,16 @@ const postRoutes = require('./routes/posts');
 
 const storeRoutes = require('./routes/stores');
 
+const authRoutes = require('./routes/auths');
+
+
 //Middlewares
 
 app.use('/posts', postRoutes);
 
 app.use('/stores', storeRoutes);
+
+app.use('/auths', authRoutes);
 
 //ROUTES
 

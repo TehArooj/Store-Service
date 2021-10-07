@@ -24,7 +24,8 @@ const StoreSchema = mongoose.Schema({
     city: {
         type: String,
         required: true
-    }
+    },
+    
     
 });
 

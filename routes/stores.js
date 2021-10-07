@@ -2,12 +2,16 @@ const express = require('express');
 const Store = require('../models/Store');
 const router = express.Router();
 
+var count=0;
+
 
 //GETS BACK ALL THE StoreS
 router.get('/', async (req, res) => {
     //res.send('I am in Stores');
     try {
         const stores = await Store.find();
+        count= await Store.count();
+        console.log(`Store count is : ${count}`);
         res.json(stores);
     } catch (err) {
         res.json({ message: err });
@@ -50,12 +54,17 @@ router.get('/:storeId', async (req, res) => {
 
 router.delete('/:storeId', async (req, res) => {
     try {
-        const removedStore = await Store.remove({ _id: req.params.storeId });
+        //const removedStore = await Store.remove({ _id: req.params.storeId });
+        const removedStore = await Store.deleteOne({ _id: req.params.storeId });
+        count= await Store.count();
+        console.log(`Store count : ${count}`);
         res.json(removedStore);
     } catch (err) {
         res.json({ message: err });
     }
 });
+
+
 
 //UPDATE A SPECIFIC Store
 router.patch('/:storeId', async (req, res) => {
@@ -66,7 +75,21 @@ router.patch('/:storeId', async (req, res) => {
     catch (err) {
         res.json({ meassage: err });
     }
-})
+});
+ 
+
+//UPDATE MANY 
+/*
+router.patch('/:storeId', async (req, res) => {
+    try {
+        const updatedStore = await Store.updateMany//({ _id: req.params.storeId }, { $set: { memberSince: req.body.memberSince } });
+        res.json(updatedStore);
+    }
+    catch (err) {
+        res.json({ meassage: err });
+    }
+});
+*/
 
 
 module.exports = router;
